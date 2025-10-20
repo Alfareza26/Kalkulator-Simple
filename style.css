@@ -1,0 +1,205 @@
+
+:root {
+  --body-bg-top: #0a0f1a;
+  --body-bg-bottom: #1e293b;
+  --body-text: #e5e7eb;
+  --calc-bg: #111827;
+  --calc-card: #1e293b;
+  --calc-accent: #6366f1;  
+  --calc-muted: #9ca3af;
+  --calc-glass: rgba(255, 255, 255, 0.05);
+  --font-size: 35px;
+  --button-radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--body-bg-top), var(--body-bg-bottom));
+  font-family: "Segoe UI", Inter, sans-serif;
+  color: var(--body-text);
+  overflow: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Overlay dan popup */
+.overlay,
+.settings-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+  height: 80vh;
+  background: var(--calc-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  padding: 20px; 
+  gap: 20px;
+  transition: all 0.4s ease;
+}
+
+.left-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.display {
+  background: var(--calc-glass);
+  border-radius: 12px;
+  padding: 16px;
+  flex: none;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.expr {
+  font-size: 28px;
+  color: var(--calc-muted);
+  min-height: 28px;
+}
+
+.result {
+  font-size: var(--font-size);
+  font-weight: 600;
+  color: var(--body-text);
+}
+
+.history {
+  flex: 1;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05);
+}
+.hist-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+.keys {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.keys button {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: var(--button-radius);
+  font-size: 20px;
+  color: var(--body-text);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+.keys button:hover {
+  background: var(--calc-accent);
+  color: #fff;
+}
+.wide {
+  grid-column: span 2;
+}
+
+.settings-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--calc-muted);
+  border: none;
+  font-size: 22px;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1001;
+  transition: 0.3s;
+}
+.settings-btn:hover {
+  transform: rotate(45deg);
+  color: var(--calc-accent);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.settings-panel {
+  position: fixed;
+  top: 50%;
+  right: -350px;
+  transform: translateY(-50%);
+  width: 300px;
+  background: var(--calc-card);
+  padding: 20px;
+  border-radius: 14px 0 0 14px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: right 0.4s ease;
+  z-index: 1002;
+}
+.settings-panel.open {
+  right: 0;
+}
+.settings-panel h3 {
+  color: var(--calc-accent);
+  margin: 0 0 10px;
+}
+.settings-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.settings-panel select,
+.settings-panel input {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background: var(--calc-glass);
+  color: inherit;
+}
+.close-settings {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: var(--calc-muted);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+.close-settings:hover {
+  color: var(--calc-accent);
+}
+
+@media (orientation: landscape) {
+  .calculator {
+    flex-direction: row;
+    width: 95vw;
+    height: 90vh;
+  }
+  .left-panel { flex: 1; }
+  .keys { flex: 1; }
+}

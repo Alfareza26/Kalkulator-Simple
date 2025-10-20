@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aljab's Calc</title>
+    <link rel="stylesheet"  href="style.css">
+  </head>
+  <body>
+    <!-- Overlay welcome -->
+    <div class="overlay" id="welcomeOverlay">
+      <div class="welcome-content">
+        <h2>Selamat Datang 🎉</h2>
+        <p>Halo! Ini Aljab’s Calc — kalkulator modern dengan pengaturan canggih yang akan terus kami kembangkan.</p>
+        <button id="startBtn">Mulai</button>
+      </div>
+    </div>
+
+    <button class="settings-btn" id="settingsBtn">⚙️</button>
+
+    <div class="calculator">
+      <div class="left-panel">
+        <div class="display">
+          <div id="expr" class="expr">0</div>
+          <div id="result" class="result">0</div>
+        </div>
+        <div class="history" id="history"></div>
+      </div>
+      <div class="keys">
+        <button data-fn="clear">C</button>
+        <button data-fn="back">⌫</button>
+        <button data-fn="paren">( )</button>
+        <button data-value="/">÷</button>
+
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button data-value="*">×</button>
+
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button data-value="-">−</button>
+
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button data-value="+">+</button>
+
+        <button data-value="0" class="wide">0</button>
+        <button data-value=".">.</button>
+        <button data-value="%">%</button>
+        <button data-fn="equals" class="wide" style="background:linear-gradient(90deg,var(--accent),#4f46e5)">=</button>
+      </div>
+    </div>
+
+    <div class="settings-overlay" id="overlay"></div>
+
+    <div class="settings-panel" id="settingsPanel">
+      <button class="close-settings" id="closeSettings">✖</button>
+      <h3>Pengaturan</h3>
+      <label>
+        Tema:
+        <select id="theme">
+          <option value="purple">Ungu</option>
+          <option value="blue">Biru</option>
+          <option value="green">Hijau</option>
+          <option value="light">Terang</option>
+        </select>
+      </label>
+      <label>
+        Ukuran Font:
+        <input type="range" id="fontsize" min="24" max="48" value="35" />
+      </label>
+      <label>
+        Bentuk Tombol:
+        <select id="buttonshape">
+          <option value="default">Default</option>
+          <option value="round">Bulat</option>
+          <option value="square">Kotak</option>
+        </select>
+      </label>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
