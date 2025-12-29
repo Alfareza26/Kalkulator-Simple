@@ -1,87 +1,165 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Aljab's Calc</title>
-    <link rel="stylesheet"  href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Calculator</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <!-- Overlay welcome -->
-    <div class="overlay" id="welcomeOverlay">
+
+  <body class="blue-cyan-theme">
+    <!-- ================= WELCOME OVERLAY ================= -->
+    <div id="welcomeOverlay" class="welcome-overlay">
       <div class="welcome-content">
-        <h2>Selamat Datang 🎉</h2>
-        <p>Halo! Ini Aljab’s Calc — kalkulator modern dengan pengaturan canggih yang akan terus kami kembangkan.</p>
-        <button id="startBtn">Mulai</button>
+        <div>
+          <h2>Selamat Datang</h2>
+          <h4>Hello!! ini ModernCalc</h4>
+          <p>
+            Kalkulator yang dirancang untuk penggunaan sehari hari dengan desain yang minimalis dan sederhana.
+          </p>
+          <button id="startBtn" class="start-btn">Coba sekarang</button>
+        </div>
       </div>
     </div>
 
-    <button class="settings-btn" id="settingsBtn">⚙️</button>
+    <!-- ================= OVERLAY ================= -->
+    <div class="overlay" id="overlay"></div>
 
+    <!-- ================= MENU BUTTON ================= -->
+    <div class="btn-setting">
+      <button class="settings-btn" id="menuBtn">⚙</button>
+    </div>
+
+    <!-- ================= SETTINGS PANEL ================= -->
+    <div class="settings-panel main-panel" id="settingsPanel">
+      <button class="close-settings" id="closeMainMenu">✖</button>
+      <h3>Menu & Setting</h3>
+      
+      <div class="main-box-panel">
+        <label>
+         Wallpaper
+          <input type="file" id="wallpaperInput" accept="image/*">
+        </label>
+      </div>
+      
+      <div class="main-box-panel">
+        <label>
+          Tema
+          <select id="theme">
+            <option value="blue-cyan">Blue</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="main-box-panel">
+        <label>
+          Ukuran Font
+          <select id="fontsize">
+            <option value="14">14px</option>
+            <option value="16">16px</option>
+            <option value="18">18px</option>
+            <option value="20">20px</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="main-box-panel">
+        <label>
+          Bentuk Tombol
+          <select id="buttonshape">
+            <option value="default">Default</option>
+            <option value="round">Bulat</option>
+            <option value="square">Kotak</option>
+          </select>
+        </label>
+      </div>
+      <div class="main-box-panel box-panel">
+        <div>
+          <button id="historyBtn"><i class='bx bx-history'></i><h4>History</h4></button>
+        <button id="aboutBtn"><i class='bx bx-user-pin' ></i><h4>About</h4></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= CALCULATOR ================= -->
     <div class="calculator">
       <div class="left-panel">
         <div class="display">
-          <div id="expr" class="expr">0</div>
           <div id="result" class="result">0</div>
+          <div id="expr" class="expr">0</div>
         </div>
-        <div class="history" id="history"></div>
       </div>
+
       <div class="keys">
-        <button data-fn="clear">C</button>
+        <button data-fn="sin">sin</button>
+        <button data-fn="cos">cos</button>
+        <button data-fn="tan">tan</button>
+        <button data-fn="clear">AC</button>
         <button data-fn="back">⌫</button>
-        <button data-fn="paren">( )</button>
-        <button data-value="/">÷</button>
+
+        <button data-fn="sqrt">√</button>
+        <button data-value="^">^</button>
 
         <button data-value="7">7</button>
         <button data-value="8">8</button>
         <button data-value="9">9</button>
-        <button data-value="*">×</button>
+        <button data-fn="paren">( )</button>
+        <button data-value="%">%</button>
 
         <button data-value="4">4</button>
         <button data-value="5">5</button>
         <button data-value="6">6</button>
-        <button data-value="-">−</button>
+        <button data-value="/">÷</button>
+        <button data-value="*">×</button>
 
         <button data-value="1">1</button>
         <button data-value="2">2</button>
         <button data-value="3">3</button>
-        <button data-value="+">+</button>
+        <button data-value="-">−</button>
 
-        <button data-value="0" class="wide">0</button>
+        <button data-value="+">+</button>
         <button data-value=".">.</button>
-        <button data-value="%">%</button>
-        <button data-fn="equals" class="wide" style="background:linear-gradient(90deg,var(--accent),#4f46e5)">=</button>
+        <button data-value="0">0</button>
+        <button data-fn="equals">=</button>
       </div>
     </div>
 
-    <div class="settings-overlay" id="overlay"></div>
-
-    <div class="settings-panel" id="settingsPanel">
-      <button class="close-settings" id="closeSettings">✖</button>
-      <h3>Pengaturan</h3>
-      <label>
-        Tema:
-        <select id="theme">
-          <option value="purple">Ungu</option>
-          <option value="blue">Biru</option>
-          <option value="green">Hijau</option>
-          <option value="light">Terang</option>
-        </select>
-      </label>
-      <label>
-        Ukuran Font:
-        <input type="range" id="fontsize" min="24" max="48" value="35" />
-      </label>
-      <label>
-        Bentuk Tombol:
-        <select id="buttonshape">
-          <option value="default">Default</option>
-          <option value="round">Bulat</option>
-          <option value="square">Kotak</option>
-        </select>
-      </label>
+    <!-- ================= HISTORY PANEL ================= -->
+    <div class="history-panel" id="historyPanel">
+      <button class="close-history" id="closeHistory">✖</button>
+      <h2>📋 Riwayat Perhitungan</h2>
+      <div id="history" class="history"></div>
     </div>
 
-    <script src="main.js"></script>
+    <!-- ================= ABOUT PANEL ================= -->
+    <div class="about-panel" id="aboutPanel">
+      <div>
+        <button class="close-about" id="closeAbout">✖</button>
+      <h2>💡 Tentang ModernCalc</h2>
+
+      <p>
+        <strong>ModernCalc</strong> adalah kalkulator web modern dengan
+        perhitungan real-time, riwayat otomatis, dan kontrol keyboard penuh.
+      </p>
+
+      <ul>
+        <li>✔ Mode ilmiah (sin, cos, tan, √, ^)</li>
+        <li>✔ Riwayat perhitungan</li>
+        <li>✔ Tema & tampilan fleksibel</li>
+        <li>✔ Kontrol keyboard penuh</li>
+      </ul>
+
+      <p style="font-size: 12px; color: #aaa">
+        © 2025 ModernCalc — All rights reserved
+      </p>
+      </div>
+    </div>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script src="logic.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
